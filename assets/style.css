@@ -3,6 +3,12 @@ html {
     position: relative;
     min-height: 100%;
 }
+.gifs {
+    width: 200px;
+}
+img {
+    display: block;
+}
 footer {
     position: absolute;
     bottom: 0px;
