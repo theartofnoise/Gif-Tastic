@@ -2,8 +2,8 @@
 
 $(document).ready(function () {
     //topics array
-    var topics = ["cars", "cats", "music"];
-    var still = true;
+    var topics = ["cars", "cats", "music", "guitars", "piano", "coding", "computers", "food", "cooking" , "running"];
+    
 
     //get gif button
     function makeButtons() {
@@ -15,6 +15,7 @@ $(document).ready(function () {
             //makes buttons
             var btn = $("<button>");
             btn.addClass("topics");
+            btn.addClass("btn btn-secondary");
             btn.attr("data-name", topics[i]);
             btn.text(topics[i]);
             $("#btnArea").append(btn);
@@ -26,12 +27,14 @@ $(document).ready(function () {
     //adds buttons from user input
     $("#submitBtn").on("click", function(event) {
         event.preventDefault();
-
+        
         //get input
         var newGif = $("#userQuery").val().trim();
         topics.push(newGif);
-
+        
         makeButtons();
+        //clear input
+        $("#userQuery").val([])
 
     });
 
@@ -40,7 +43,8 @@ $(document).ready(function () {
         $("#gifArea").empty();
         for (i=0; i<limit;i++) {
             //makes new img with gifs
-            var d=$("<img></img>")            
+            var d=$("<img></img>")
+            var newDiv = $("<div></div>");            
             d.addClass("gifs");
             d.addClass("text-center");
             d.attr("data-name", response.data[i].images.rating);
@@ -48,18 +52,20 @@ $(document).ready(function () {
             d.attr("data-animated", response.data[i].images.original.url);
             d.attr("data-state", "still");        
             d.attr("src", response.data[i].images.original_still.url);
-            $("#gifArea").append(d);
-            $("#gifArea").append("rating: "+response.data[i].rating);
-            still = true;
+            newDiv.append(d);
+            newDiv.attr("class", "theGifDivs")
+            newDiv.append("rating: "+response.data[i].rating)
+            $("#gifArea").append(newDiv);
+            
             
 
         }
     }
-    
+    // snaches up that sweet API!
     function runAPI(userQuery) {
         var apiKey = "BY2xlALS7L9BEoajmS1caMfkEuHCr1Pz";
         // var userQuery = $("#userQuery").val();
-        var limit = 5;
+        var limit = 10;
         var rating = "rating=g";
         var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=" + apiKey + "&q=" + userQuery + "&" + "limit=" + limit + "&" + rating;
         console.log(queryURL);
@@ -84,8 +90,8 @@ $(document).ready(function () {
     //gifs pause and start
     $(document).on("click", ".gifs", function (event) {
         event.preventDefault();
-        var state = $(this).attr("data-state");
-        if (state === "still") {
+        //check if its attr is still and set src accordingly
+        if ($(this).attr("data-state") === "still") {
             $(this).attr("src", $(this).attr("data-animated"));
             $(this).attr("data-state", "animate");
           } else {

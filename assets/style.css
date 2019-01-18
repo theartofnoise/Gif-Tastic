@@ -6,10 +6,28 @@ html {
 .gifs {
     width: 200px;
 }
+.theGifDivs {
+    display: inline-block;
+}
+.btn, .gifs, input {
+    box-shadow: 3px 3px blue, 6px 6px red, 9px 9px green;
+    margin: 5px;
+    border-radius: 5px;
+}
+.btn:hover, .gifs:hover {
+    box-shadow: none;
+}
+.row {
+    padding: 15px;
+}
 img {
     display: block;
 }
+#main {
+    margin-bottom: 130px;
+}
 footer {
+    
     position: absolute;
     bottom: 0px;
     left: 0%;
