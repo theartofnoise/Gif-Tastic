@@ -1,0 +1,16 @@
+html {
+    padding: 0px;
+    position: relative;
+    min-height: 100%;
+}
+footer {
+    position: absolute;
+    bottom: 0px;
+    left: 0%;
+    width: 100%;
+    border-radius: 0rem;
+    color: rgb(241, 37, 37);
+}
+/* div {
+    border: solid black 1px;
+} */
